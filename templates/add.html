@@ -1,0 +1,82 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Add A New Cafe{% endblock %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ '/static/css/styles.css' }}">
+
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+      <form method="POST" action="{{ url_for('add_cafe') }}">
+        {{ form.csrf_token }}
+        <p>
+          {{ form.cafe.label }} <br> {{ form.cafe(size=30) }}
+          {% for err in form.cafe.errors %}
+          <span style="color: red;">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.location.label }} <br> {{ form.location(size=30) }}
+          {% for err in form.location.errors %}
+          <span style="color: red;">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.open_time.label }} <br> {{ form.open_time(size=30) }}
+          {% for err in form.open_time.errors %}
+          <span style="color: red;">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.close_time.label }} <br> {{ form.close_time(size=30) }}
+          {% for err in form.close_time.errors %}
+          <span style="color: red;">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          <label for="{{ form.rating.id }}">{{ form.rating.label }}</label><br>
+          {{ form.rating(class="form-control") }}
+      
+          {% for err in form.rating.errors %}
+              <span class="text-danger">{{ err }}</span>
+          {% endfor %}
+        </p>
+
+        <p>
+          <label for="{{ form.wifi.id }}">{{ form.wifi.label }}</label><br>
+          {{ form.wifi(class="form-control") }}
+      
+          {% for err in form.wifi.errors %}
+              <span class="text-danger">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          <label for="{{ form.power.id }}">{{ form.power.label }}</label><br>
+          {{ form.power(class="form-control") }}
+      
+          {% for err in form.power.errors %}
+              <span class="text-danger">{{ err }}</span>
+          {% endfor %}
+        </p>
+      
+        {{ form.submit}}
+      </form>
+
+	  <p class="space-above"><a href="{{ url_for('cafes') }}">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
